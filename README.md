@@ -62,6 +62,7 @@
 | `SOT` | 시제 일치 표 |
 | `PONS` | PONS 보충 설명 (초록 상자) |
 | `DELA`, `DELA_SOT` | Delatour 보충 설명 (붉은 상자). `delatour-tense-notes.json`에서 만든 데이터 |
+| `SAME`, `DELA_STEM` | 「같은 어간」 링크(칸별)와 「단순시제는 어간 + 어미」 규칙 상자의 Delatour 내용. `stem-model.json`, `delatour-stem-notes.json`에서 만든 데이터. 어간 이름 다섯 개(현재·nous·ils·미래·단순과거 어간)는 사이트가 붙인 이름 |
 
 `pronoms.html` (대명사):
 
