@@ -104,9 +104,9 @@ h1{font-family:var(--f-head);font-weight:700;font-size:clamp(28px,4.4vw,40px);li
 .lg-sel{width:24px;height:16px;border-radius:4px;background:var(--blue-soft);box-shadow:0 0 0 2px var(--blue)}
 .lg-pair{width:24px;height:16px;border-radius:4px;border:1.5px dashed var(--blue)}
 .jumps{margin:-14px 0 0}
-.jumps a{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1.5px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:14px;font-weight:600;text-decoration:none}
-.jumps a:hover{background:var(--sheet)}
-.jumps a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.jumps a,.jump-pill{appearance:none;-webkit-appearance:none;font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1.5px solid var(--blue);border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:14px;font-weight:600;text-decoration:none}
+.jumps a:hover,.jump-pill:hover{background:var(--sheet)}
+.jumps a:focus-visible,.jump-pill:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 
 /* ---------- note sheet / map ---------- */
 .sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:22px 18px 26px}
@@ -532,6 +532,63 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
 .about-x:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){.marianne{transition:none}}
 
+/* ---------- stems: same-stem line, rule box, conditional root line ---------- */
+button.fhead{appearance:none;-webkit-appearance:none;background:none;border:0;padding:0;font:inherit;font-size:15.5px;font-weight:700;color:var(--ink);text-align:left;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0 0 -4px}
+button.fhead:hover .fhead-go{text-decoration:underline}
+button.fhead:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.jump-link{appearance:none;-webkit-appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--blue);font-weight:600;font-size:13.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap;margin-left:6px}
+.jump-link:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+#sot,#stem{scroll-margin-top:16px}
+.peek{position:relative;margin:8px 0 4px;padding:30px 12px 12px;border:1.5px solid var(--blue);border-radius:10px;background:var(--sheet);display:flex;flex-direction:column;gap:10px;max-height:70vh;overflow:auto}
+.peek-x{position:absolute;top:6px;right:8px;appearance:none;-webkit-appearance:none;font:inherit;font-size:12.5px;color:var(--ink-2);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:1px 10px;cursor:pointer}
+.peek-n{margin:0;font-size:12.5px;color:var(--ink-3)}
+.peek .sot-sec,.peek .rule{border:0;padding:0;background:none}
+.fhead-go{font-size:12.5px;font-weight:600;color:var(--blue)}
+.stem-tbl tr.grp td{background:var(--hover);font-size:13px;font-weight:700;color:var(--ink);padding:6px 8px}
+.stem-tbl .grp-f{font-weight:500;color:var(--ink-2);margin-left:6px}
+.stem-tbl td small.fr{display:block;font-family:var(--f-fr);font-size:13.5px;color:var(--ink-3);margin-top:1px}
+.stem-tbl tbody tr[id]{scroll-margin:80px 0}
+.stem-tbl tr.flash td{animation:rowflash 1.8s ease-out}
+@keyframes rowflash{0%,40%{background:var(--blue-soft)}100%{background:transparent}}
+@media (prefers-reduced-motion: reduce){.stem-tbl tr.flash td{animation:none;background:var(--blue-soft)}}
+.stem-find{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:3px;font-size:14px}
+.stem-find s{color:var(--red);text-decoration-thickness:1.5px}
+
+.fhead{margin:0 0 -4px;font-size:15.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.fbox.fbase{flex-direction:column;align-items:flex-start;justify-content:center;gap:1px}
+.feg{display:block;font-family:var(--f-fr);font-size:12.5px;font-weight:400;color:var(--ink-2);line-height:1.35;word-break:keep-all}
+.feg s{color:var(--red);text-decoration-thickness:1.5px}
+.fcap-wrap{display:inline-flex;flex-direction:column;gap:4px;min-width:0}
+.fcap{display:block;font-size:12.5px;font-weight:700;color:var(--ink);padding:0 2px 2px;border-bottom:1.5px solid var(--ink);white-space:nowrap}
+.feq:has(.fcap-wrap){align-items:flex-start}
+.feq:has(.fcap-wrap) .fplus{align-self:center;margin-top:20px}
+.fcap-wrap .fbox.fbase{min-height:46px}
+@media (max-width:560px){.feq.has-ends .fcap-wrap{flex:0 1 auto}.feq.has-ends .fcap-wrap:first-child{flex:0 0 auto;max-width:44%}.feq.has-ends .fcap-wrap:first-child .fb-body{white-space:nowrap}.fcap{font-size:12px}}
+
+.fsame{border:1px dashed var(--ink-3);border-radius:8px;padding:8px 12px 10px;display:flex;flex-direction:column;gap:6px}
+.fsame-h{margin:0;font-size:12.5px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:8px}
+.fsame-t{margin:0;font-size:13.5px;color:var(--ink-2)}
+.fsame-n{margin:0;font-size:12px;color:var(--ink-3)}
+.fsame-b{border-style:dashed}
+.stem-sum{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:2px}
+.stem-tbl td{vertical-align:top;line-height:1.7}
+.stem-tbl td small{color:var(--ink-3)}
+.stem-h4{margin:6px 0 0;font-size:14px;font-weight:600}
+.rule-no{display:inline-block;font-family:var(--f-body);font-size:12.5px;font-weight:700;color:var(--sheet);background:var(--ink);border-radius:4px;padding:1px 8px;margin:0 10px 6px 0;vertical-align:3px;letter-spacing:.02em}
+.stem-rule h3 small{display:block;font-family:var(--f-body);font-size:14px;font-weight:600;color:var(--ink-2);margin-top:4px}
+@media (max-width:560px){
+  .stem-same,.stem-same tbody{display:block}
+  .stem-same thead{display:none}
+  .stem-same tr{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);border-bottom:1px solid var(--rule);padding:6px 0 8px}
+  .stem-same td{border-bottom:0;padding:4px 8px}
+  .stem-same td:last-child{grid-column:1 / -1;background:var(--hover);border-radius:7px;margin:2px 2px 0;padding:6px 10px}
+}
+.stem-same td small{color:var(--ink-3)}
+.root-line{margin:-6px 0 0;padding:10px 14px;border:1px solid var(--rule);border-left:3px solid var(--blue);border-radius:6px;background:var(--sheet);font-size:14.5px;line-height:1.6}
+.root-line .lbl{display:block;font-size:12.5px;font-weight:600;color:var(--blue);margin-bottom:2px}
+.root-line a{color:var(--blue);font-weight:600;font-size:13.5px;white-space:nowrap}
+.root-line small{color:var(--ink-3)}
+
 /* ---------- theme toggle (top right) ---------- */
 .theme-btn{position:fixed;top:max(12px, env(safe-area-inset-top, 0px));right:max(12px, env(safe-area-inset-right, 0px));z-index:50;appearance:none;-webkit-appearance:none;width:40px;height:40px;display:grid;place-items:center;padding:0;border:1px solid var(--rule);border-radius:999px;background:var(--sheet);color:var(--ink-2);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.08)}
 .theme-btn:hover{color:var(--ink);border-color:var(--ink-3)}
@@ -591,7 +648,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
     <li><span class="lg-sel" aria-hidden="true"></span>파란 칸: 지금 보고 있는 시제</li>
     <li><span class="lg-pair" aria-hidden="true"></span>파란 점선: 짝꿍 (복합형 ↔ 그 조동사의 시제)</li>
   </ul>
-  <p class="jumps"><a href="#sot">시제 일치 (간접화법) 표 보기 <span aria-hidden="true">↓</span></a></p>
+  <p class="jumps"><button type="button" class="jump-pill" data-jump="sot">시제 일치 (간접화법) 표 보기 <span aria-hidden="true">↓</span></button></p>
 
   <section class="sheet" aria-label="시제 지도">
     <p class="hint hint-scroll">표를 옆으로 밀면 미래 쪽까지 보입니다 →</p>
@@ -728,6 +785,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
     </div>
   </section>
 
+  <p class="root-line"><span class="lbl">조건법의 뿌리</span>조건법은 따로 묶었지만 뿌리는 미래입니다. 조건법 현재는 단순미래와 같은 미래 어간에 반과거 어미를 붙인 꼴입니다 (<em>je parlerai → je parlerais</em>). <button type="button" class="jump-link" data-jump="stem">어간 + 어미 규칙 보기 ↓</button> <small>· Delatour p.141</small></p>
+
   <section class="detail" id="detail" aria-live="polite">
     <div class="d-head">
       <p class="d-crumb" id="d-crumb"></p>
@@ -844,8 +903,34 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
 
   <h2 class="rules-title">지도에 숨어 있는 규칙</h2>
   <section class="rules">
+    <article class="rule wide stem-rule" id="stem">
+      <h3><span class="rule-no">규칙 1</span>모든 칸은 「앞 + 뒤」로 만든다<small>단순시제는 어간 + 어미. 같은 어간에 어미만 바꾸면 다른 시제가 됩니다</small></h3>
+      <p>단순시제는 어간 + 어미, 복합시제는 조동사 + 과거분사, 3형제는 반조동사 + 동사원형으로 만듭니다. 단순시제의 어간은 현재 어간 · nous 어간 · ils 어간 · 미래 어간 · 단순과거 어간 다섯 가지이고, 같은 어간에 어미만 바꾸면 다른 시제가 됩니다. 아래 표는 지도의 24칸을 모두 이 방식으로 적은 것입니다. 칸 이름을 누르면 그 칸이 열립니다. <span class="own">사이트 설명</span></p>
+      <ul class="stem-sum">
+        <li><b>미래 어간</b> → 단순미래 / 조건법 현재</li>
+        <li><b>단순과거 어간</b> → 단순과거 / 접속법 반과거</li>
+        <li><b>nous 어간</b> → 반과거 / 현재분사 / 접속법 현재의 nous·vous</li>
+      </ul>
+      <div class="tbl-wrap">
+        <table class="tbl stem-tbl" id="stem-tbl">
+          <thead><tr><th>칸 <small>(예: <em>parler</em>)</small></th><th>앞: 어간 · 조동사</th><th>뒤: 어미 · 과거분사</th></tr></thead>
+          <tbody><tr class="grp"><td colspan="3">단순시제 <span class="grp-f">어간 + 어미</span></td></tr><tr id="sr-present"><td><button class="go" data-t="present">직설법 현재</button><small class="fr">je parle</small></td><td>현재 어간</td><td>현재 어미</td></tr><tr id="sr-imparfait"><td><button class="go" data-t="imparfait">반과거</button><small class="fr">je parlais</small></td><td>nous 어간</td><td>반과거 어미</td></tr><tr id="sr-passe_simple"><td><button class="go" data-t="passe_simple">단순과거</button><small class="fr">il parla</small></td><td>어간 <small>(동사원형 − <em>er</em> 등)</small></td><td>단순과거 어미</td></tr><tr id="sr-futur_simple"><td><button class="go" data-t="futur_simple">단순미래</button><small class="fr">je parlerai</small></td><td>미래 어간</td><td>미래 어미</td></tr><tr id="sr-cond_present"><td><button class="go" data-t="cond_present">조건법 현재</button><small class="fr">je parlerais</small></td><td>미래 어간</td><td><b>반과거 어미</b></td></tr><tr id="sr-subj_present"><td><button class="go" data-t="subj_present">접속법 현재</button><small class="fr">que je parle</small></td><td>ils 어간 <small>(je·tu·il·ils)</small><br>nous 어간 <small>(nous·vous)</small></td><td>접속법 어미</td></tr><tr id="sr-subj_imparfait"><td><button class="go" data-t="subj_imparfait">접속법 반과거</button><small class="fr">que je parlasse</small></td><td>단순과거 어간</td><td>접속법 반과거 어미</td></tr><tr id="sr-imp_present"><td><button class="go" data-t="imp_present">명령법 현재</button><small class="fr">parle, parlons</small></td><td>현재 어간</td><td>현재 어미 <small>(현재형 그대로, tu형 <em>-es → -e</em>)</small></td></tr><tr id="sr-part_present"><td><button class="go" data-t="part_present">현재분사</button><small class="fr">parlant</small></td><td>nous 어간</td><td><em>-ant</em></td></tr><tr id="sr-gerondif"><td><button class="go" data-t="gerondif">제롱디프</button><small class="fr">en parlant</small></td><td><em>en</em> +</td><td>현재분사</td></tr><tr id="sr-inf_present"><td><button class="go" data-t="inf_present">부정법 현재</button><small class="fr">parler</small></td><td>동사원형 그대로</td><td>—</td></tr><tr id="sr-part_passe"><td><button class="go" data-t="part_passe">과거분사</button><small class="fr">parlé</small></td><td>어간 <small>(<em>parl-</em>)</small></td><td>과거분사 어미 <small>(<em>-é, -i, -u</em> …)</small></td></tr><tr class="grp"><td colspan="3">복합시제 <span class="grp-f">조동사 <em>avoir / être</em>의 시제 + 과거분사</span></td></tr><tr id="sr-passe_compose"><td><button class="go" data-t="passe_compose">복합과거</button><small class="fr">j'ai parlé</small></td><td><em>avoir / être</em> 현재</td><td>과거분사</td></tr><tr id="sr-plus_que_parfait"><td><button class="go" data-t="plus_que_parfait">대과거</button><small class="fr">j'avais parlé</small></td><td><em>avoir / être</em> 반과거</td><td>과거분사</td></tr><tr id="sr-passe_anterieur"><td><button class="go" data-t="passe_anterieur">전과거</button><small class="fr">j'eus parlé</small></td><td><em>avoir / être</em> 단순과거</td><td>과거분사</td></tr><tr id="sr-futur_anterieur"><td><button class="go" data-t="futur_anterieur">전미래</button><small class="fr">j'aurai parlé</small></td><td><em>avoir / être</em> 단순미래</td><td>과거분사</td></tr><tr id="sr-cond_passe"><td><button class="go" data-t="cond_passe">조건법 과거</button><small class="fr">j'aurais parlé</small></td><td><em>avoir / être</em> 조건법 현재</td><td>과거분사</td></tr><tr id="sr-subj_passe"><td><button class="go" data-t="subj_passe">접속법 과거</button><small class="fr">que j'aie parlé</small></td><td><em>avoir / être</em> 접속법 현재</td><td>과거분사</td></tr><tr id="sr-subj_pqp"><td><button class="go" data-t="subj_pqp">접속법 대과거</button><small class="fr">que j'eusse parlé</small></td><td><em>avoir / être</em> 접속법 반과거</td><td>과거분사</td></tr><tr id="sr-imp_passe"><td><button class="go" data-t="imp_passe">명령법 과거</button><small class="fr">aie parlé</small></td><td><em>avoir / être</em> 명령법 현재</td><td>과거분사</td></tr><tr id="sr-inf_passe"><td><button class="go" data-t="inf_passe">부정법 과거</button><small class="fr">avoir parlé</small></td><td><em>avoir / être</em> (동사원형)</td><td>과거분사</td></tr><tr class="grp"><td colspan="3">3형제 (우언 표현) <span class="grp-f">반조동사 + 동사원형</span></td></tr><tr id="sr-futur_proche"><td><button class="go" data-t="futur_proche">근접미래</button><small class="fr">je vais parler</small></td><td><em>aller</em> 현재</td><td>동사원형</td></tr><tr id="sr-passe_recent"><td><button class="go" data-t="passe_recent">근접과거</button><small class="fr">je viens de parler</small></td><td><em>venir</em> 현재 + <em>de</em></td><td>동사원형</td></tr><tr id="sr-present_prog"><td><button class="go" data-t="present_prog">현재진행</button><small class="fr">je suis en train de parler</small></td><td><em>être</em> 현재 + <em>en train de</em></td><td>동사원형</td></tr></tbody>
+        </table>
+      </div>
+      <h4 class="stem-h4">어간 다섯 개 찾는 법</h4>
+      <ul class="stem-find"><li><b>현재 어간</b>: 동사원형에서 <em>-er / -ir / -re / -oir</em>를 뗌 · <em>parl<s>er</s> → parl-</em> (2군 <em>fini- / finiss-</em>)</li><li><b>nous 어간</b>: 현재 <em>nous</em>형 − <em>ons</em> · <em>nous parl<s>ons</s> → parl-</em></li><li><b>ils 어간</b>: 현재 <em>ils</em>형 − <em>ent</em> · <em>ils parl<s>ent</s> → parl-</em></li><li><b>미래 어간</b>: 동사원형 그대로 (<em>-re</em>는 <em>e</em>를 뺌) · <em>parler → parler-</em></li><li><b>단순과거 어간</b>: 단순과거 <em>tu</em>형 − <em>s</em> · <em>tu parla<s>s</s> → parla-</em></li></ul>
+      <p class="small">동사원형 그대로가 부정법 현재이고, 과거분사는 모든 복합시제의 재료입니다(아래 「복합시제는 늘 짝꿍 단순시제의 왼쪽」). 어미 쪽에서 보면 교차가 하나 더 있습니다: 반과거 어미(<em>-ais, -ais, -ait, -ions, -iez, -aient</em>)는 nous 어간에 붙으면 반과거, 미래 어간에 붙으면 조건법 현재입니다. 그래서 조건법 현재가 「과거에서 본 미래」로 쓰입니다. 어간 이름 다섯 개는 이 사이트가 붙인 이름이고, 예시는 활용표의 <em>parler, finir</em>만 씁니다. 불규칙 어간은 각 칸의 「불규칙」 목록에 있습니다.</p>
+      <h4 class="stem-h4">조합이 겹쳐 꼴이 같아지는 곳</h4>
+      <div class="tbl-wrap">
+        <table class="tbl stem-same">
+          <thead><tr><th>꼴</th><th>어느 칸</th><th>왜 같은가</th></tr></thead>
+          <tbody><tr><td class="fr"><em>nous parlions, vous parliez</em></td><td>반과거 = 접속법 현재</td><td>둘 다 nous 어간 + <em>-ions, -iez</em>. 대부분의 동사에서 같음 (<em>être, avoir, faire, savoir, pouvoir</em>는 다름) <small>· <span class="own">사이트 설명</span></small></td></tr><tr><td class="fr"><em>je parlerai / je parlerais</em></td><td>단순미래 / 조건법 현재</td><td>같은 미래 어간 + <em>-ai / -ais</em>. 발음이 거의 같음 <small>· <span class="own">사이트 설명</span></small></td></tr><tr><td class="fr"><em>je finis, il finit</em></td><td>현재 = 단순과거</td><td>2군 동사는 현재 단수와 단순과거 단수가 같은 꼴 <small>· <span class="own">사이트 설명</span></small></td></tr><tr><td class="fr"><em>il eut / qu'il eût · il parla / qu'il parlât</em></td><td>단순과거 / 접속법 반과거</td><td>같은 단순과거 어간. 악센트와 <em>t</em>로 구분 <small>· Delatour p.136</small></td></tr></tbody>
+        </table>
+      </div>
+      <div class="dela" id="dela-stem"></div>
+    </article>
     <article class="rule">
-      <h3>복합시제는 늘 짝꿍 단순시제의 왼쪽</h3>
+      <h3><span class="rule-no">규칙 2</span>복합시제는 늘 짝꿍 단순시제의 왼쪽</h3>
       <p>복합시제는 조동사 <em>avoir</em> / <em>être</em> + 과거분사입니다. 조동사를 어떤 시제로 활용하느냐가 복합시제의 이름을 정하고, 복합시제는 짝꿍 단순시제가 가리키는 기준 시점보다 한 발 먼저 끝난 일을 말합니다. 그래서 지도에서도 짝꿍의 왼쪽에 놓입니다. 이 "먼저"는 기준 시점에 대한 것이지, 지금보다 과거라는 뜻은 아닙니다: 전미래 <em>Quand tu arriveras, j'aurai fini.</em>은 미래의 한 시점보다 먼저 끝날 일입니다.</p>
       <div class="tbl-wrap">
         <table class="tbl">
@@ -869,7 +954,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
     </article>
 
     <article class="rule red">
-      <h3>시제라고 보기 어려운 3형제<small>왜? 동사 활용 X</small></h3>
+      <h3><span class="rule-no">규칙 3</span>시제라고 보기 어려운 3형제<small>왜? 동사 활용 X</small></h3>
       <p>세 표현 모두 본동사는 동사원형 그대로이고, 앞에 붙은 <em>venir</em> · <em>être</em> · <em>aller</em>만 활용됩니다. 그래서 문법책에서는 시제가 아니라 우언 표현(<em>périphrase</em>)이라고 부릅니다.</p>
       <div class="tbl-wrap">
         <table class="tbl">
@@ -885,7 +970,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
     </article>
 
     <article class="rule">
-      <h3>조건법·접속법의 현재는 미래까지 맡는다</h3>
+      <h3><span class="rule-no">규칙 4</span>조건법·접속법의 현재는 미래까지 맡는다</h3>
       <p>조건법과 접속법에는 미래형이 따로 없습니다. 그래서 지도의 화살표처럼 현재형이 지금과 앞으로의 일을 함께 맡고, 그보다 먼저 끝난 일은 왼쪽의 복합형(조건법 과거, 접속법 과거)이 맡습니다.</p>
       <ul class="ex">
         <li><span class="fr">Si tu venais demain, je serais content.</span><span class="ko">네가 내일 온다면 기쁠 텐데. (조건법 현재 + 내일)</span></li>
@@ -905,7 +990,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
     </article>
 
     <article class="rule">
-      <h3>문어 시제를 구어로 바꾸면</h3>
+      <h3><span class="rule-no">규칙 5</span>문어 시제를 구어로 바꾸면</h3>
       <p>지도의 문어 칸과 접속법의 문어 표시는 글(소설, 역사서, 격식 문체)에서만 보는 형태입니다. 말할 때는 오른쪽 형태로 바꿔 씁니다. 읽을 때 알아보는 것이 목표라서, 3인칭(<em>il</em>, <em>ils</em>) 형태부터 익히면 충분합니다.</p>
       <div class="tbl-wrap">
         <table class="tbl">
@@ -1014,11 +1099,12 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
   /* ---------- tense content ---------- */
   var T = {
     present:{ko:"현재",fr:"Présent",crumb:"직설법 · 구어 · 단순시제",b:{s:"present"},
+      fh:"현재 어간 + 현재 어미",
       f:[
-        {lb:"1군 <em>-er</em>",base:"동사원형 − <em>er</em>",ends:["-e","-es","-e","-ons","-ez","-ent"],ex:"parler → je parle, nous parlons"},
-        {lb:"2군 <em>-ir</em>",base:"동사원형 − <em>ir</em>",ends:["-is","-is","-it","-issons","-issez","-issent"],ex:"finir → je finis, nous finissons"},
-        {lb:"3군 (대부분)",base:"어간",ends:["-s","-s","-t","-ons","-ez","-ent"],ex:"prendre → je prends · venir → je viens · 예외: ils font·vont·sont·ont, vous faites·dites·êtes"}],
-      fnote:"3군은 동사마다 어간이 달라서 따로 익혀야 합니다. -dre로 끝나는 동사는 il형에 -t를 붙이지 않습니다: il prend, il rend (단 -indre, -soudre 동사는 -t: il peint, il résout). offrir·ouvrir는 1군 어미(-e, -es, -e), pouvoir·vouloir는 -x, -x, -t를 씁니다.",
+        {lb:"1군 <em>-er</em>",en:"현재 어미",eg:"<em>parl<s>er</s></em> → <em>parl-</em>",base:"현재 어간"+" <small>(동사원형 − <em>er</em>)</small>",ends:["-e","-es","-e","-ons","-ez","-ent"],ex:"parler → je parle, nous parlons"},
+        {lb:"2군 <em>-ir</em>",en:"현재 어미",eg:"<em>fin<s>ir</s></em> → <em>fini-</em> / 복수 <em>finiss-</em>",base:"현재 어간"+" <small>(단수 <em>fini-</em> · 복수 <em>finiss-</em>)</small>",ends:["-s","-s","-t","-ons","-ez","-ent"],ex:"finir → je fini-s, nous finiss-ons"},
+        {en:"현재 어미",lb:"3군 (대부분)",base:"현재 어간"+" <small>(동사마다 다름)</small>",ends:["-s","-s","-t","-ons","-ez","-ent"],ex:"prendre → je prends · venir → je viens · 예외: ils font·vont·sont·ont, vous faites·dites·êtes"}],
+      fnote:"현재 어간은 1군 1개, 2군 2개(<em>fini- / finiss-</em>), 3군 1~3개입니다 (Delatour p.120). 3군은 동사마다 어간이 달라서 따로 익혀야 합니다. -dre로 끝나는 동사는 il형에 -t를 붙이지 않습니다: il prend, il rend (단 -indre, -soudre 동사는 -t: il peint, il résout). offrir·ouvrir는 1군 어미(-e, -es, -e), pouvoir·vouloir는 -x, -x, -t를 씁니다.",
       irr:[{h:"자주 쓰는 불규칙 (je형)",items:[["être","je suis"],["avoir","j'ai"],["aller","je vais"],["faire","je fais"],["prendre","je prends"],["venir","je viens"],["pouvoir","je peux"]]}],
       uses:[
         {u:"지금의 상태나 행동 (영어의 현재진행 뜻까지 포함)",fr:"Elle travaille en ce moment.",ko:"그녀는 지금 일하는 중이다."},
@@ -1032,6 +1118,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["present_prog","passe_recent","futur_proche","passe_compose"]},
 
     present_prog:{ko:"현재진행",fr:"être en train de + 동사원형",crumb:"직설법 · 3형제 · 우언 표현",b:{p:"etre",link:"en train de"},
+      fh:"<em>être</em> 현재 + <em>en train de</em> + 동사원형",
       f:[{help:"etre",mid:"en train de",ex:"je suis en train de manger · il est en train d'écrire (모음 앞 d')"}],
       uses:[
         {u:"지금 바로 ~하는 중이라는 것을 강조",fr:"Je suis en train de manger.",ko:"나 지금 밥 먹는 중이야."},
@@ -1042,6 +1129,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["present","passe_recent","futur_proche","imparfait"]},
 
     passe_recent:{ko:"근접과거",fr:"Passé récent",crumb:"직설법 · 3형제 · 우언 표현",b:{p:"venir",link:"de"},
+      fh:"<em>venir</em> 현재 + <em>de</em> + 동사원형",
       f:[{help:"venir",mid:"de",ex:"je viens de partir · je viens d'arriver (모음 앞 d')"}],
       uses:[
         {u:"방금 ~했다: 막 끝난 일",fr:"Je viens d'arriver.",ko:"나 방금 도착했어."},
@@ -1052,6 +1140,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["passe_compose","present","futur_proche","present_prog"]},
 
     futur_proche:{ko:"근접미래",fr:"Futur proche",crumb:"직설법 · 3형제 · 우언 표현",b:{p:"aller",link:""},
+      fh:"<em>aller</em> 현재 + 동사원형",
       f:[{help:"aller",ex:"je vais partir · je vais aller"}],
       uses:[
         {u:"곧 ~할 것이다: 눈앞의 조짐",fr:"Regarde le ciel, il va pleuvoir.",ko:"하늘 봐, 곧 비 오겠다."},
@@ -1062,6 +1151,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["futur_simple","present","passe_recent","present_prog"]},
 
     passe_compose:{ko:"복합과거",fr:"Passé composé",crumb:"직설법 · 구어 · 복합시제",b:{c:"present"},
+      fh:"<em>avoir / être</em> 현재 + 과거분사",
       f:[{aux:"present"},{lb:"부정문 어순 (인칭이 있는 복합시제 공통. 부정법 과거는 <em>ne pas avoir</em> + 과거분사)",seq:[["주어","fmid"],["<em>ne</em>","fmid"],["(대명사)","fmid"],["조동사","fbase"],["<em>pas</em>","fmid"],["과거분사","fpp"]],ex:"Je ne l'ai pas vu. · Elle ne s'est pas levée. · Ils n'étaient pas encore arrivés."}],
       irr:[
         {h:"과거분사 규칙형",items:[["-er","-é"],["-ir","-i"],["-dre","-u"]]},
@@ -1081,7 +1171,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["imparfait","passe_simple","passe_recent","plus_que_parfait"]},
 
     imparfait:{ko:"반과거",fr:"Imparfait",crumb:"직설법 · 구어·문어 공통 · 단순시제",b:{s:"imparfait"},
-      f:[{base:"<em>nous</em> 현재형 − <em>ons</em>",ends:["-ais","-ais","-ait","-ions","-iez","-aient"],ex:"nous finissons → finiss- → je finissais"}],
+      fh:"nous 어간 + 반과거 어미",
+      f:[{en:"반과거 어미",eg:"<em>nous parl<s>ons</s></em> → <em>parl-</em>",base:"nous 어간 <small>(= <em>nous</em> 현재형 − <em>ons</em>)</small>",ends:["-ais","-ais","-ait","-ions","-iez","-aient"],ex:"nous finissons → finiss- → je finissais"}],
       irr:[{h:"불규칙 어간 (이것 하나뿐)",items:[["être","ét-"]]}],
       uses:[
         {u:"과거의 배경·묘사·상태: 시작과 끝이 보이지 않는 \"선\"",fr:"Il faisait beau et la mer était calme.",ko:"날씨가 좋았고 바다는 잔잔했다."},
@@ -1096,6 +1187,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["passe_compose","plus_que_parfait","passe_simple","cond_present"]},
 
     plus_que_parfait:{ko:"대과거",fr:"Plus-que-parfait",crumb:"직설법 · 구어·문어 공통 · 복합시제",b:{c:"imparfait"},
+      fh:"<em>avoir / être</em> 반과거 + 과거분사",
       f:[{aux:"imparfait"}],
       fnote:"예: j'avais parlé · j'étais allé(e) · je m'étais levé(e)",
       uses:[
@@ -1108,10 +1200,12 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["imparfait","passe_compose","futur_anterieur","passe_anterieur"]},
 
     passe_simple:{ko:"단순과거",fr:"Passé simple",crumb:"직설법 · 문어 · 단순시제",b:{s:"ps"},
+      fh:"어간 + 단순과거 어미",
       f:[
-        {lb:"1군 <em>-er</em>",base:"동사원형 − <em>er</em>",ends:["-ai","-as","-a","-âmes","-âtes","-èrent"],ex:"parler → il parla, ils parlèrent"},
-        {lb:"2군 · 많은 3군",base:"동사원형 − <em>ir</em> / <em>re</em>",ends:["-is","-is","-it","-îmes","-îtes","-irent"],ex:"finir → il finit · rendre → il rendit"},
-        {lb:"일부 3군",base:"어간",ends:["-us","-us","-ut","-ûmes","-ûtes","-urent"],ex:"vouloir → il voulut · lire → il lut"}],
+        {sn:"어간",en:"단순과거 어미",eg:"<em>parl<s>er</s></em> → <em>parl-</em>",lb:"1군 <em>-er</em>",base:"동사원형 − <em>er</em>",ends:["-ai","-as","-a","-âmes","-âtes","-èrent"],ex:"parler → il parla, ils parlèrent"},
+        {sn:"어간",en:"단순과거 어미",lb:"2군 · 많은 3군",base:"동사원형 − <em>ir</em> / <em>re</em>",ends:["-is","-is","-it","-îmes","-îtes","-irent"],ex:"finir → il finit · rendre → il rendit"},
+        {sn:"어간",en:"단순과거 어미",lb:"일부 3군",base:"어간",ends:["-us","-us","-ut","-ûmes","-ûtes","-urent"],ex:"vouloir → il voulut · lire → il lut"}],
+      fnote:"단순과거 <em>tu</em>형에서 <em>-s</em>를 뗀 <em>parla-, fini-, voulu-</em>가 단순과거 어간입니다. 이 어간으로 접속법 반과거를 만듭니다: <em>que je parlasse, qu'il parlât</em>.",
       irr:[{h:"불규칙 (je형)",items:[["être","je fus"],["avoir","j'eus"],["faire","je fis"],["venir","je vins"],["voir","je vis"],["prendre","je pris"],["mettre","je mis"],["naître","je naquis"]]}],
       uses:[
         {u:"소설·역사서·동화 같은 글에서 복합과거 역할",fr:"Il ouvrit la porte et sortit.",ko:"그는 문을 열고 나갔다."},
@@ -1122,6 +1216,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["passe_compose","passe_anterieur","imparfait","subj_imparfait"]},
 
     passe_anterieur:{ko:"전과거",fr:"Passé antérieur",crumb:"직설법 · 문어 · 복합시제",b:{c:"ps"},
+      fh:"<em>avoir / être</em> 단순과거 + 과거분사",
       f:[{aux:"ps"}],
       fnote:"예: j'eus parlé · je fus allé(e) · je me fus levé(e)",
       uses:[
@@ -1132,7 +1227,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["passe_simple","plus_que_parfait","futur_anterieur"]},
 
     futur_simple:{ko:"단순미래",fr:"Futur simple",crumb:"직설법 · 구어 · 단순시제",b:{s:"futur"},
-      f:[{base:"동사원형 <small>(-re는 e를 뺌)</small>",ends:["-ai","-as","-a","-ons","-ez","-ont"],ex:"parler → je parlerai · prendre → je prendrai"}],
+      fh:"미래 어간 + 미래 어미",
+      f:[{en:"미래 어미",eg:"<em>parler</em> → <em>parler-</em> (그대로)",base:"미래 어간 <small>(= 동사원형, -re는 e를 뺌)</small>",ends:["-ai","-as","-a","-ons","-ez","-ont"],ex:"parler → je parlerai · prendre → je prendrai"}],
       irr:[{h:"불규칙 어간",items:[["être","ser-"],["avoir","aur-"],["aller","ir-"],["faire","fer-"],["venir","viendr-"],["pouvoir","pourr-"],["voir","verr-"],["vouloir","voudr-"],["devoir","devr-"],["savoir","saur-"]]}],
       fnote:"어미는 <em>avoir</em> 현재형(ai, as, a, avons, avez, ont)에서 따온 모양입니다. 철자가 바뀌는 -er 동사는 그 변화를 따릅니다: <em>acheter → j'achèterai, appeler → j'appellerai</em>. <em>envoyer → j'enverrai</em>는 불규칙입니다.",
       uses:[
@@ -1144,6 +1240,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["futur_proche","futur_anterieur","cond_present"]},
 
     futur_anterieur:{ko:"전미래",fr:"Futur antérieur",crumb:"직설법 · 구어 · 복합시제",b:{c:"futur"},
+      fh:"<em>avoir / être</em> 단순미래 + 과거분사",
       f:[{aux:"futur"}],
       fnote:"예: j'aurai parlé · je serai allé(e) · je me serai levé(e)",
       uses:[
@@ -1155,7 +1252,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["futur_simple","plus_que_parfait","cond_passe"]},
 
     cond_present:{ko:"조건법 현재",fr:"Conditionnel présent",crumb:"조건법 · 단순시제",alias:"지도 표기: 현재 → 미래까지",b:{s:"cond"},
-      f:[{base:"단순미래 어간",ends:["-ais","-ais","-ait","-ions","-iez","-aient"],ex:"parler → je parlerais · être → je serais"}],
+      fh:"미래 어간 + 반과거 어미",
+      f:[{en:"반과거 어미",eg:"<em>parler</em> → <em>parler-</em> (그대로)",base:"미래 어간 <small>(= 단순미래와 같은 어간)</small>",ends:["-ais","-ais","-ait","-ions","-iez","-aient"],ex:"parler → je parlerais · être → je serais"}],
       irr:[{h:"불규칙 어간 (단순미래와 같음)",items:[["être","ser-"],["avoir","aur-"],["aller","ir-"],["faire","fer-"],["venir","viendr-"],["pouvoir","pourr-"],["voir","verr-"],["vouloir","voudr-"],["devoir","devr-"],["savoir","saur-"]]}],
       fnote:"어미는 반과거 어미와 같습니다. 미래 어간 + 과거 어미 = 과거에서 본 미래.",
       uses:[
@@ -1169,6 +1267,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["cond_passe","imparfait","futur_simple","subj_present"]},
 
     cond_passe:{ko:"조건법 과거",fr:"Conditionnel passé",crumb:"조건법 · 복합시제",alias:"지도 표기: 복합과거",b:{c:"cond"},
+      fh:"<em>avoir / être</em> 조건법 현재 + 과거분사",
       f:[{aux:"cond"}],
       fnote:"예: j'aurais parlé · je serais allé(e) · je me serais levé(e)",
       uses:[
@@ -1181,7 +1280,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["cond_present","plus_que_parfait","futur_anterieur","subj_pqp"]},
 
     subj_present:{ko:"접속법 현재",fr:"Subjonctif présent",crumb:"접속법 · 단순시제",alias:"지도 표기: 현재 → 미래까지",b:{s:"subj",q:1},
-      f:[{base:"<em>ils</em> 현재형 − <em>ent</em>",ends:["-e","-es","-e","-ions","-iez","-ent"],ex:"ils finissent → finiss- → que je finisse"}],
+      fh:"ils 어간 / nous 어간 + 접속법 어미",
+      f:[{lb:"je · tu · il · ils",en:"접속법 어미",eg:"<em>ils parl<s>ent</s></em> → <em>parl-</em>",base:"ils 어간 <small>(= <em>ils</em> 현재형 − <em>ent</em>)</small>",ends:["-e","-es","-e","-ent"],pers:["je","tu","il","ils"],ex:"ils finissent → finiss- → que je finisse, qu'ils finissent"},{lb:"nous · vous",en:"접속법 어미",eg:"<em>nous parl<s>ons</s></em> → <em>parl-</em>",base:"nous 어간 <small>(= <em>nous</em> 현재형 − <em>ons</em>)</small>",ends:["-ions","-iez"],pers:["nous","vous"],ex:"nous finissons → finiss- → que nous finissions · 어간이 둘인 동사: <em>que je prenne / que nous prenions</em>"}],
       irr:[{h:"불규칙 (que je형)",items:[["être","sois"],["avoir","aie"],["aller","aille"],["faire","fasse"],["pouvoir","puisse"],["savoir","sache"],["vouloir","veuille"]]}],
       uses:[
         {u:"필요·의무 (<em>il faut que</em>)",fr:"Il faut que tu partes demain.",ko:"너는 내일 떠나야 한다."},
@@ -1194,6 +1294,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["subj_passe","subj_imparfait","cond_present","present"]},
 
     subj_passe:{ko:"접속법 과거",fr:"Subjonctif passé",crumb:"접속법 · 복합시제",alias:"지도 표기: 복합과거",b:{c:"subj",q:1},
+      fh:"<em>avoir / être</em> 접속법 현재 + 과거분사",
       f:[{aux:"subj"}],
       fnote:"예: que j'aie parlé · que je sois allé(e) · que je me sois levé(e)",
       uses:[
@@ -1204,7 +1305,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["subj_present","subj_pqp","passe_compose"]},
 
     subj_imparfait:{ko:"접속법 반과거",fr:"Subjonctif imparfait",crumb:"접속법 · 문어 · 단순시제",alias:"지도 표기: 반과거",b:{s:"subjimp",q:1},
-      f:[{base:"단순과거 <em>tu</em>형 − <em>s</em>",ends:["-sse","-sses","-^t","-ssions","-ssiez","-ssent"],ex:"tu parlas → parla- → que je parlasse, qu'il parlât"}],
+      fh:"단순과거 어간 + 접속법 반과거 어미",
+      f:[{en:"접속법 반과거 어미",eg:"<em>tu parla<s>s</s></em> → <em>parla-</em>",base:"단순과거 어간 <small>(= 단순과거 <em>tu</em>형 − <em>s</em>)</small>",ends:["-sse","-sses","-^t","-ssions","-ssiez","-ssent"],ex:"tu parlas → parla- → que je parlasse, qu'il parlât"}],
       irr:[{h:"자주 보는 형태 (qu'il형)",items:[["être","fût"],["avoir","eût"],["faire","fît"],["venir","vînt"]]}],
       fnote:"il형은 마지막 모음에 ^를 얹고 t를 붙입니다 (parlât, finît, fût).",
       uses:[
@@ -1214,6 +1316,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["subj_present","passe_simple","subj_pqp"]},
 
     subj_pqp:{ko:"접속법 대과거",fr:"Subjonctif plus-que-parfait",crumb:"접속법 · 문어 · 복합시제",alias:"지도 표기: 대과거",b:{c:"subjimp",q:1},
+      fh:"<em>avoir / être</em> 접속법 반과거 + 과거분사",
       f:[{aux:"subjimp"}],
       fnote:"예: que j'eusse parlé · que je fusse allé(e) · que je me fusse levé(e)",
       uses:[
@@ -1223,6 +1326,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["subj_passe","subj_imparfait","cond_passe","plus_que_parfait"]},
 
     imp_present:{ko:"명령법 현재",fr:"Impératif présent",crumb:"명령법 · 단순시제",b:{imp:"present"},
+      fh:"현재 어간 + 현재 어미 (현재형 tu·nous·vous형 그대로)",
       f:[{cells:[["tu","현재형 tu형<br><small>-er 어미 동사는 -s 빼기</small>"],["nous","현재형 nous형"],["vous","현재형 vous형"]],ex:"parler → parle, parlons, parlez · finir → finis, finissons, finissez · offrir → offre"}],
       irr:[{h:"불규칙 (être·avoir·savoir·vouloir는 접속법 현재를 바탕으로 한 형태)",items:[["être","sois, soyons, soyez"],["avoir","aie, ayons, ayez"],["savoir","sache, sachons, sachez"],["vouloir","veuille, veuillons, veuillez"],["aller","va, allons, allez"]]}],
       fnote:"주어 없이 씁니다. -er 어미 동사(1군 전부, aller, 어미가 1군 모양인 offrir·ouvrir)는 tu형에서 -s가 빠지지만, y·en 앞에서는 다시 붙습니다 (<em>Vas-y&nbsp;!</em> <em>Manges-en&nbsp;!</em>). <em>pouvoir</em>처럼 명령법이 없는 동사도 있습니다.",
@@ -1239,6 +1343,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["imp_passe","present","subj_present"]},
 
     imp_passe:{ko:"명령법 과거",fr:"Impératif passé",crumb:"명령법 · 복합시제 · 드물게 씀",b:{imp:"passe"},
+      fh:"<em>avoir / être</em> 명령법 현재 + 과거분사",
       f:[{cells:[["tu","<em>aie</em> / <em>sois</em>"],["nous","<em>ayons</em> / <em>soyons</em>"],["vous","<em>ayez</em> / <em>soyez</em>"]],tail:"과거분사",ex:"aie fini · sois rentré(e) · ayez terminé"}],
       fnote:"조동사는 명령법 현재형입니다. <em>être</em>를 쓰는 동사는 과거분사가 일치합니다.",
       uses:[
@@ -1249,6 +1354,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["imp_present","futur_anterieur","passe_compose"]},
 
     inf_present:{ko:"부정법 현재",fr:"Infinitif présent",crumb:"부정법 (인칭 없음) · 단순형",alias:"= 동사원형",b:{nf:"inf"},
+      fh:"동사원형 그대로",
       f:[{seq:[["동사원형 <small>(-er, -ir, -re, -oir)</small>","fbase"]],ex:"parler · finir · prendre · pouvoir · se lever"}],
       fnote:"인칭·시제 활용이 없습니다. 대명동사는 se가 주어에 맞춰 바뀝니다 (je vais me lever).",
       uses:[
@@ -1261,6 +1367,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["inf_passe","futur_proche","passe_recent"]},
 
     inf_passe:{ko:"부정법 과거",fr:"Infinitif passé",crumb:"부정법 (인칭 없음) · 복합형",alias:"= 동사원형의 완료형",b:{nf:"infp"},
+      fh:"<em>avoir / être</em> (동사원형) + 과거분사",
       f:[{seq:[["<em>avoir</em> / <em>être</em> <small>(원형 그대로)</small>","fbase"],["과거분사","fpp"]],ex:"avoir parlé · être allé(e)(s) · s'être levé(e)(s)"}],
       fnote:"조동사 고르는 법과 과거분사 일치는 복합과거와 같습니다.",
       uses:[
@@ -1273,7 +1380,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["inf_present","part_passe","passe_compose"]},
 
     part_present:{ko:"현재분사",fr:"Participe présent",crumb:"분사 (인칭 없음) · 단순형",b:{nf:"ppr"},
-      f:[{seq:[["<em>nous</em> 현재형 − <em>ons</em>","fbase"],["-ant","fmid"]],ex:"nous finissons → finiss- → finissant"}],
+      fh:"nous 어간 + <em>-ant</em>",
+      f:[{seq:[["nous 어간 <small>(= <em>nous</em> 현재형 − <em>ons</em>)</small><span class=\"feg\">예: <em>nous parl<s>ons</s></em> → <em>parl-</em></span>","fbase"],["-ant","fmid"]],ex:"nous finissons → finiss- → finissant"}],
       irr:[{h:"불규칙 (3개뿐)",items:[["être","étant"],["avoir","ayant"],["savoir","sachant"]]}],
       fnote:"성·수 변화가 없습니다.",
       uses:[
@@ -1285,6 +1393,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["gerondif","part_passe","imparfait"]},
 
     gerondif:{ko:"제롱디프",fr:"Gérondif",crumb:"분사 (인칭 없음) · en + 현재분사",b:{nf:"ger"},
+      fh:"<em>en</em> + 현재분사 (nous 어간 + <em>-ant</em>)",
       f:[{seq:[["<em>en</em>","fmid"],["현재분사","fpp"]],ex:"en parlant · en finissant · en se levant"}],
       fnote:"현재분사와 모양이 같고 앞에 en만 붙습니다. 성·수 변화가 없습니다. 주절과 주어가 같을 때만 씁니다: <em>En fermant la porte, j'ai entendu le téléphone.</em> (✗ <em>En fermant la porte, le téléphone a sonné.</em>)",
       uses:[
@@ -1297,6 +1406,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       links:["part_present","present","imparfait"]},
 
     part_passe:{ko:"과거분사",fr:"Participe passé",crumb:"분사 (인칭 없음) · 과거분사와 완료 분사",b:{nf:"pp"},
+      fh:"어간 + 과거분사 어미 (<em>-é, -i, -u</em> …)",
       f:[{lb:"완료 분사 (현재분사의 복합형)",seq:[["<em>ayant</em> / <em>étant</em>","fbase"],["과거분사","fpp"]],ex:"ayant parlé · étant arrivé(e)(s) · s'étant levé(e)(s)"}],
       irr:[
         {h:"과거분사 규칙형",items:[["-er","-é"],["-ir","-i"],["-dre","-u"]]},
@@ -1324,6 +1434,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       }).join('');
   }
   var dsot = document.getElementById("dela-sot"); if (dsot) dsot.innerHTML = delaHTML(DELA_SOT);
+  var DELA_STEM = [{"h":"단순시제 = 어간 + 어미","p":"118","items":["모든 법에는 단순시제와 복합시제가 있음","단순시제는 어간(<em>radical</em>)과 어미(<em>terminaison</em>)로 만듦: <em>Je parl-ais</em> (직설법 반과거) · <em>Il veut que nous parl-ions</em> (접속법 현재) · <em>Il parler-ait</em> (조건법 현재) · <em>parl-ant</em> (현재분사)"]},{"h":"현재형의 어간 수","p":"120","items":["현재형은 어간이 1군 하나, 2군 둘, 3군 하나·둘·셋"]},{"h":"반과거: 직설법 현재 1인칭 복수의 어간 + 반과거 어미","p":"122","items":["모든 동사가 규칙적: 직설법 현재 1인칭 복수(<em>nous</em>)의 어간 + <em>-ais, -ais, -ait, -ions, -iez, -aient</em>","<em>nous chant-ons → je chant-ais, nous chant-ions</em> · <em>nous finiss-ons → je finiss-ais</em> · <em>nous voul-ons → je voul-ais</em>","예외는 <em>être</em>: <em>j'étais, tu étais…</em>"]},{"h":"현재분사: 같은 어간 + -ant","p":"152, 154","items":["직설법 현재 1인칭 복수의 어간 + <em>-ant</em>: <em>nous regardons → regardant</em> · <em>nous agissons → agissant</em> · <em>nous faisons → faisant</em>","불규칙은 셋: <em>être → étant</em> · <em>avoir → ayant</em> · <em>savoir → sachant</em>","제롱디프는 <em>en</em> + 현재분사: <em>en sortant de la bibliothèque</em>"]},{"h":"접속법 현재: 직설법 현재 3인칭 복수의 어간 + 접속법 어미","p":"135","items":["직설법 현재 3인칭 복수(<em>ils</em>)의 어간 + <em>-e, -es, -e, -ions, -iez, -ent</em>","<em>ils parl-ent → que je parl-e / que nous parl-ions</em> · <em>ils finiss-ent → que je finiss-e / que nous finiss-ions</em> · <em>ils mett-ent → que je mett-e / que nous mett-ions</em>","어간이 둘인 일부 3군 동사는 <em>je, tu, il, ils</em> 네 인칭만 이 어간으로 만듦: <em>ils prennent → que je prenn-e, que tu prenn-es, qu'il prenn-e, qu'ils prenn-ent</em> (<em>nous, vous</em>는 바로 아래 참고)"]},{"h":"접속법 현재 nous·vous (어간이 둘인 동사)","p":"136","items":["어간이 둘인 일부 3군 동사는 <em>nous, vous</em>를 직설법 현재 1인칭 복수의 어간으로 만듦: <em>nous pren-ons → que nous pren-ions, que vous pren-iez</em>","같은 방식: <em>venir, tenir, prendre</em>와 그 합성어, <em>voir, boire, recevoir, croire</em> 등","<em>aller, vouloir, valoir</em>도 <em>nous, vous</em>는 이 어간: <em>que nous all-ions, que nous voul-ions, que nous val-ions</em>"]},{"h":"조건법 현재: 미래의 어간 + 반과거 어미","p":"141","items":["미래의 어간(<em>radical du futur</em>) + 반과거 어미 <em>-ais, -ais, -ait, -ions, -iez, -aient</em>","미래 / 조건법: <em>je saur-ai / je saur-ais</em> · <em>tu finir-as / tu finir-ais</em> · <em>il viendr-a / il viendr-ait</em> · <em>nous manger-ons / nous manger-ions</em> · <em>vous pourr-ez / vous pourr-iez</em> · <em>ils jouer-ont / ils jouer-aient</em>","조건법에는 '과거 속 미래'의 가치도 있음: <em>Le professeur a annoncé qu'il y aurait un examen à la fin de la semaine.</em>"]},{"h":"접속법 반과거: 단순과거에서 만듦","p":"136","items":["격식체. 직설법 단순과거를 바탕으로 + <em>-sse, -sses, -t, -ssions, -ssiez, -ssent</em>","<em>je parla(i) → que je parla-sse, qu'il parlâ-t</em> · <em>je fini(s) → que je fini-sse, qu'il finî-t</em> · <em>je voulu(s) → que je voulu-sse, qu'il voulû-t</em> · <em>je vi(s) → que je vi-sse, qu'il vî-t</em>","3인칭 단수에는 곡절 악센트(^)가 붙음"]},{"h":"책이 짚는 혼동","p":"136, 141","items":["조건법의 <em>-r-</em>를 놓치지 말 것: <em>je mettrais</em> (조건법) / <em>je mettais</em> (반과거) · <em>je préparerais / je préparais</em>","단순과거와 접속법 반과거: <em>Il eut / qu'il eût</em> · <em>Il parla / qu'il parlât</em>"]}];
+  var dstem = document.getElementById("dela-stem"); if (dstem) dstem.innerHTML = delaHTML(DELA_STEM);
 
   /* ---------- PONS sheet additions (only where they add something) ---------- */
   var PONS = {
@@ -1579,15 +1691,17 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
   var AUXNAME = {present:"현재형",imparfait:"반과거",ps:"단순과거",futur:"단순미래",cond:"조건법 현재",subj:"접속법 현재",subjimp:"접속법 반과거"};
   var HELPNAME = {venir:"venir",etre:"être",aller:"aller"};
   var PLUS = '<span class="fplus" aria-hidden="true">+</span>';
-  function endsHTML(arr){
-    return '<span class="fends">' + arr.map(function(e, i){ return '<span class="fend"><i>' + PERS[i] + '</i>' + e + '</span>'; }).join("") + '</span>';
+  function endsHTML(arr, pers){
+    return '<span class="fends">' + arr.map(function(e, i){ return '<span class="fend"><i>' + (pers || PERS)[i] + '</i>' + e + '</span>'; }).join("") + '</span>';
   }
   function boxHTML(x, cls){ return '<span class="fbox' + (cls ? " " + cls : "") + '">' + x + '</span>'; }
   function rowHTML(lb, inner, ex){
     return '<div class="frow">' + (lb ? '<span class="flb">' + lb + '</span>' : '') + '<div class="feq' + (inner.indexOf('class="fends"') >= 0 ? ' has-ends' : '') + '">' + inner + '</div>' + (ex ? '<p class="fex">' + ex + '</p>' : '') + '</div>';
   }
+  var SAME = {"present": {"stem": "현재 어간", "cells": ["imp_present"]}, "imp_present": {"stem": "현재 어간", "cells": ["present"]}, "imparfait": {"stem": "nous 어간", "cells": ["part_present", "gerondif", "subj_present"]}, "part_present": {"stem": "nous 어간", "cells": ["imparfait", "gerondif", "subj_present"]}, "gerondif": {"stem": "nous 어간", "cells": ["part_present", "imparfait"]}, "subj_present": {"stem": "ils 어간 · nous 어간", "cells": ["imparfait", "part_present"]}, "futur_simple": {"stem": "미래 어간", "cells": ["cond_present"]}, "cond_present": {"stem": "미래 어간", "cells": ["futur_simple"]}, "passe_simple": {"stem": "단순과거 어간", "cells": ["subj_imparfait"]}, "subj_imparfait": {"stem": "단순과거 어간", "cells": ["passe_simple"]}};
   function formulaHTML(t){
     var out = [];
+    if (t.fh) out.push('<button type="button" class="fhead" data-jump="sr-' + cur + '">' + t.fh + ' <span class="fhead-go">표에서 보기 ↓</span></button>');
     t.f.forEach(function(r){
       if (r.aux){
         out.push(rowHTML("<em>avoir</em> " + AUXNAME[r.aux], endsHTML(AUX.avoir[r.aux]) + PLUS + boxHTML("과거분사", "fpp")));
@@ -1601,7 +1715,14 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       } else if (r.text){
         out.push(rowHTML(r.lb, '<span class="ftext">' + r.text + '</span>'));
       } else {
-        out.push(rowHTML(r.lb, boxHTML(r.base, "fbase") + PLUS + endsHTML(r.ends), r.ex));
+        var egH = r.eg ? '<span class="feg">예: ' + r.eg + '</span>' : "";
+        if (r.en){
+          var cut = r.base.indexOf(" <small>"), sName = r.sn || (cut < 0 ? r.base : r.base.slice(0, cut)), sBody = r.sn ? r.base : (cut < 0 ? "" : r.base.slice(cut + 1).replace("<small>(= ", "<small>").replace("<small>(", "<small>").replace(")</small>", "</small>"));
+          out.push(rowHTML(r.lb, '<span class="fcap-wrap"><span class="fcap">' + sName + '</span>' + boxHTML((sBody ? '<span class="fb-body">' + sBody + '</span>' : "") + egH, "fbase") + '</span>' + PLUS +
+            '<span class="fcap-wrap fcap-ends"><span class="fcap">' + r.en + '</span>' + endsHTML(r.ends, r.pers) + '</span>', r.ex));
+        } else {
+          out.push(rowHTML(r.lb, boxHTML(r.base + egH, "fbase") + PLUS + endsHTML(r.ends, r.pers), r.ex));
+        }
       }
     });
     (t.irr || []).forEach(function(g){
@@ -1610,6 +1731,8 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       }).join("") + '</div></div>');
     });
     if (t.fnote) out.push('<p class="fnote">' + t.fnote + '</p>');
+    var sm = SAME[cur];
+    if (sm) out.push('<div class="fsame"><p class="fsame-h">같은 어간 <span class="own">사이트 설명</span></p><p class="fsame-t"><b>' + sm.stem + '</b>으로 만드는 다른 칸:</p><div class="links">' + sm.cells.map(function(k){ return '<button class="mini fsame-b" data-t="' + k + '">' + T[k].ko + '</button>'; }).join("") + '</div><p class="fsame-n">짝꿍(파란 점선)과는 다른 관계입니다. 아래 「모든 칸은 「앞 + 뒤」로 만든다」 규칙 참고.</p></div>');
     return out.join("");
   }
 
@@ -1681,7 +1804,7 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       else if (sd.same) stx = "주절이 과거가 되어도 <b>" + t.ko + "</b>는 그대로입니다. 또 따옴표 안의 <b>" + T[sd.from].ko + "</b>가 이 시제로 바뀝니다.";
       else if (sd.to) stx = "따옴표 안의 <b>" + t.ko + "</b>는 주절이 과거가 되면 <b>" + T[sd.to].ko + "</b>로 바뀝니다.";
       else if (sd.from) stx = "주절이 과거가 되면 따옴표 안의 <b>" + T[sd.from].ko + "</b>가 이 시제로 바뀝니다 (과거에서 본 미래).";
-      sl.innerHTML = '<span class="lbl">시제 일치 (주절이 과거일 때)</span>' + stx + '<a href="#sot">표 보기 ↓</a>';
+      sl.innerHTML = '<span class="lbl">시제 일치 (주절이 과거일 때)</span>' + stx + '<button type="button" class="jump-link" data-jump="sot">표 보기 ↓</button>';
       sl.hidden = false;
     } else { sl.hidden = true; sl.innerHTML = ''; }
 
@@ -1746,6 +1869,54 @@ footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--rule);padd
       try { navigator.clipboard.writeText(u).then(done, fallback); } catch (e) { fallback(); }
     });
   }
+  /* in-page jumps. Where this page can scroll itself (the real site, a browser tab) it scrolls to the
+     target. Where it cannot (some app previews lay the whole page out at full height and scroll it from
+     outside), it opens the target's content right under the button instead. */
+  function canScrollSelf(){
+    var se = document.scrollingElement || document.documentElement;
+    return se.scrollHeight > window.innerHeight + 8;
+  }
+  function stripIds(node){ node.removeAttribute && node.removeAttribute("id"); Array.prototype.forEach.call(node.querySelectorAll ? node.querySelectorAll("[id]") : [], function(n){ n.removeAttribute("id"); }); return node; }
+  function peekHTML(el){
+    if (el.tagName === "TR"){
+      var tbl = el.closest("table"), g = el.previousElementSibling;
+      while (g && !g.classList.contains("grp")) g = g.previousElementSibling;
+      var t = document.createElement("table"); t.className = tbl.className;
+      t.appendChild(tbl.tHead.cloneNode(true));
+      var tb = document.createElement("tbody");
+      if (g) tb.appendChild(g.cloneNode(true));
+      tb.appendChild(stripIds(el.cloneNode(true)));
+      t.appendChild(tb);
+      var w = document.createElement("div"); w.className = "tbl-wrap"; w.appendChild(t);
+      return w.outerHTML + '<p class="peek-n">24칸 전체 표는 아래 「규칙 1」에 있습니다.</p>';
+    }
+    return stripIds(el.cloneNode(true)).outerHTML;
+  }
+  function peek(btn, el){
+    var host = btn.closest(".fhead") ? btn : (btn.closest("p") || btn);
+    var next = host.nextElementSibling;
+    if (next && next.classList.contains("peek")){ next.remove(); btn.setAttribute("aria-expanded", "false"); return; }
+    var box = document.createElement("div"); box.className = "peek";
+    box.innerHTML = '<button type="button" class="peek-x">닫기</button>' + peekHTML(el);
+    box.querySelector(".peek-x").addEventListener("click", function(){ box.remove(); btn.setAttribute("aria-expanded", "false"); });
+    host.parentNode.insertBefore(box, host.nextSibling);
+    btn.setAttribute("aria-expanded", "true");
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest("[data-jump]") : null;
+    if (!b || b.closest(".peek")) return;
+    var el = document.getElementById(b.getAttribute("data-jump"));
+    if (!el) return;
+    e.preventDefault();
+    var row = el.tagName === "TR";
+    if (!canScrollSelf()){ peek(b, el); return; }
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function targetY(){ var r = el.getBoundingClientRect(); return Math.max(0, r.top + window.pageYOffset - (row ? Math.max(0, (window.innerHeight - r.height) / 2) : 12)); }
+    var y = targetY();
+    try { window.scrollTo({top: y, behavior: reduce ? "auto" : "smooth"}); } catch (err) { window.scrollTo(0, y); }
+    setTimeout(function(){ var r = el.getBoundingClientRect(); if (r.top < 0 || r.top > window.innerHeight * 0.85) window.scrollTo(0, targetY()); }, 900);
+    if (row){ el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+  });
   bindCopy();
   var h0 = readHash();
   if (T[h0]){ cur = h0; select(cur, false); var dd = $("detail"); if (dd) setTimeout(function(){ dd.scrollIntoView({block:"start"}); }, 60); }
